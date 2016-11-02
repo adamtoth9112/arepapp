@@ -1,0 +1,12 @@
+<div layout="column" class="relative">
+    <h2>{{vm.project.title}}</h2>
+</div>
+<md-content flex layout-xs="column" layout-gt-xs="row" layout-wrap>
+    <requirement-list-item requirement="requirement" flex-xs flex-gt-xs="33"
+                           ng-repeat="requirement in vm.requirements"></requirement-list-item>
+</md-content>
+<div layout="column" class="relative">
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="vm.openNewRequirementDialog()">
+        <md-icon md-font-library="material-icons">add</md-icon>
+    </md-button>
+</div>

@@ -1,0 +1,9 @@
+<md-content flex layout-xs="column" layout-gt-xs="row" layout-wrap>
+    <project-list-item project="project" flex-xs flex-gt-xs="33"
+                           ng-repeat="project in vm.projects"></project-list-item>
+</md-content>
+<div layout="column" class="relative">
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="vm.openNewProjectDialog()">
+        <md-icon md-font-library="material-icons">add</md-icon>
+    </md-button>
+</div>

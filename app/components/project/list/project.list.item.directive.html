@@ -1,0 +1,16 @@
+<md-card>
+  <md-card-title  ng-click="vm.setActualProject()">
+    <md-card-title-text>
+      <h3>
+        {{vm.project.title}}
+      </h3>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button cass="md-primary" ng-click="vm.setActualProject()">Select</md-button>
+    <md-button class="md-warn" ng-click="vm.showConfirm()">
+      <md-icon md-font-library="material-icons" >delete</md-icon>
+      Delete
+    </md-button>
+  </md-card-actions>
+</md-card>

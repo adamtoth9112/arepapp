@@ -1,0 +1,44 @@
+<md-dialog aria-label="Add new requirement" ng-cloak style="min-width: 50%;">
+    <form name="NewRequirementForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Requirement - {{vm.requirement.title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon md-font-library="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Title</label>
+                    <input ng-model="vm.requirement.title" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Description</label>
+                    <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
+                              md-select-on-focus></textarea>
+                </md-input-container>
+                <div>
+                    <label>Keywords</label>
+                    <div layout="row" layout-wrap>
+                        <md-input-container class="md-block" flex="50" ng-repeat="keyword in vm.keywords track by $index">
+                            <label>Keyword #{{ $index }}</label>
+                            <textarea ng-model="keyword.value" columns="1"
+                                      md-maxlength="50" rows="1" aria-multiline="true"
+                                      aria-required="true"
+                                      aria-invalid="true" ng-trim="false">
+                            </textarea>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="vm.addNewKeyword()"> Add New Keyword</md-button>
+                <md-button ng-click="vm.cancel()"> Cancel</md-button>
+                <md-button ng-click="vm.save()" class="md-primary"> Save</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
