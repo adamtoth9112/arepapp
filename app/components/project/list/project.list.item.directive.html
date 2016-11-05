@@ -6,6 +6,9 @@
       </h3>
     </md-card-title-text>
   </md-card-title>
+  <md-card-content>
+    #{{vm.project.id}}
+  </md-card-content>
   <md-card-actions layout="row" layout-align="end center">
     <md-button cass="md-primary" ng-click="vm.setActualProject()">Select</md-button>
     <md-button class="md-warn" ng-click="vm.showConfirm()">

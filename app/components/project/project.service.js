@@ -30,6 +30,7 @@
 
         function Project() {
             this.title = '';
+            this.id = '';
         }
 
         function setActualProject(project) {
