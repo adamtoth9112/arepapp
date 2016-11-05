@@ -6,7 +6,7 @@
         .factory('RequirementService', RequirementService);
 
     /** @ngInject */
-    function RequirementService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject) {
+    function RequirementService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject, NotificationService) {
         var requirements = null;
         var selectedRequirement = null;
 
@@ -55,7 +55,23 @@
         }
 
         function addRequirement(projectId, requirement){
-            return FirebaseDataService.requirements.child(projectId).push(requirement);
+            var used = false;
+            return requirements.$loaded()
+                .then(function(){
+                    angular.forEach(requirements, function(req) {
+                            if (!used) {
+                                if (req.id === requirement.id)
+                                    used = true;
+                            }
+                    });
+
+                    if (used) {
+                        requirement.id = '';
+                        NotificationService.showNotification("Identifier is already in use!");
+                        return;
+                    }
+                    return FirebaseDataService.requirements.child(projectId).push(requirement);
+                });
         }
 
         function removeRequirement(requirement){
