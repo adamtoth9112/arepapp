@@ -8,6 +8,7 @@
     /** @ngInject */
     function RequirementService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject) {
         var requirements = null;
+        var selectedRequirement = null;
 
         var service = {
             Requirement: Requirement,
@@ -16,7 +17,9 @@
             getRequirementById: getRequirementById,
             addRequirement: addRequirement,
             removeRequirement: removeRequirement,
-            updateRequirement: updateRequirement
+            updateRequirement: updateRequirement,
+            getSelectedRequirement: getSelectedRequirement,
+            setSelectedRequirement: setSelectedRequirement
         };
 
         if (ProjectService.getActualProject() != null) {
@@ -57,6 +60,14 @@
 
         function removeRequirement(requirement){
             return requirements.$remove(requirement);
+        }
+
+        function setSelectedRequirement(requirement) {
+            this.selectedRequirement = requirement;
+        }
+
+        function getSelectedRequirement() {
+            return this.selectedRequirement;
         }
     }
 

@@ -23,9 +23,16 @@
                 <div>
                     <label>Keywords</label>
                     <div layout="row" layout-wrap>
-                        <md-input-container class="md-block" flex="50" ng-repeat="keyword in vm.keywords track by $index">
-                            <label>Keyword #{{ $index }}</label>
-                            <textarea ng-model="keyword.value" columns="1"
+                        <keyword-list-item keyword="keyword" class="md-block" flex="50" ng-repeat="keyword in vm.keywords track by $index">
+                        </keyword-list-item>
+                    </div>
+                </div>
+                <div>
+                    <label>New Keywords</label>
+                    <div layout="row" layout-wrap>
+                        <md-input-container class="md-block" flex="50" ng-repeat="newKeyword in vm.newKeywords track by $index">
+                            <label>Keyword #{{ $index + vm.keywords.length + 1}}</label>
+                            <textarea ng-model="newKeyword.value" columns="1"
                                       md-maxlength="50" rows="1" aria-multiline="true"
                                       aria-required="true"
                                       aria-invalid="true" ng-trim="false">

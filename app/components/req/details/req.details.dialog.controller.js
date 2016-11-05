@@ -8,7 +8,8 @@
     /** @ngInject */
     function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService, NotificationService) {
       var vm = this;
-      vm.keywords = [];
+      vm.keywords = KeywordService.getKeywordsToRequirement(vm.requirement);
+      vm.newKeywords = [];
 
       vm.hide = function () {
         $mdDialog.hide();
@@ -20,13 +21,17 @@
       vm.save = function () {
        var projectId = ProjectService.getActualProject().$id;
        RequirementService.updateRequirement(projectId, vm.requirement);
-        KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.keywords);
+        KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.keywords, vm.newKeywords);
         NotificationService.showNotification("Requirement saved successfully.");
         vm.hide();
       };
 
       vm.addNewKeyword = function () {
-        vm.keywords.push(new KeywordService.Keyword());
+        vm.newKeywords.push(new KeywordService.Keyword());
       };
+
+      vm.removeKeyword = function (keyword) {
+
+      }
     }
 })();

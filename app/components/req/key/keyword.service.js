@@ -12,7 +12,8 @@
     var service = {
       Keyword: Keyword,
       addKeywordsToRequirement: addKeywordsToRequirement,
-      getKeywordsToRequirement: getKeywordsToRequirement
+      getKeywordsToRequirement: getKeywordsToRequirement,
+      removeKeyword: removeKeyword
     };
 
     init();
@@ -27,10 +28,15 @@
       keywords = $firebaseArray(FirebaseDataService.keywords);
     }
 
-    function addKeywordsToRequirement(requirementId, keywords){
-      _.forEach(keywords, function (keyword) {
+    function addKeywordsToRequirement(requirementId, keywords, newKeywords){
+      _.forEach(newKeywords, function (keyword) {
+        keywords.push(keyword);
         FirebaseDataService.keywords.child(requirementId).push(keyword);
-      });
+      })
+    }
+
+    function removeKeyword(requirementId, keyword) {
+      FirebaseDataService.keywords.child(requirementId).child(keyword.$id).remove();
     }
 
     function getKeywordsToRequirement(requirement){

@@ -40,6 +40,7 @@
       };
 
       vm.showDetails = function (ev) {
+        RequirementService.setSelectedRequirement(vm.requirement);
         $mdDialog.show({
           controller: "RequirementDetailsDialogController",
           locals: {requirement: angular.copy(vm.requirement)},
