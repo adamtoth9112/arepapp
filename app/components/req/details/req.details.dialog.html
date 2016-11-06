@@ -1,4 +1,4 @@
-<md-dialog aria-label="Add new requirement" ng-cloak style="min-width: 50%;">
+<md-dialog aria-label="Add new requirement" ng-cloak style="min-width: 75%;">
     <form name="NewRequirementForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -10,42 +10,65 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label>Title</label>
-                    <input ng-model="vm.requirement.title" required>
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>Description</label>
-                    <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
-                              md-select-on-focus></textarea>
-                </md-input-container>
-                <div>
-                    <label>Keywords</label>
-                    <div layout="row" layout-wrap>
-                        <keyword-list-item keyword="keyword" class="md-block" flex="50" ng-repeat="keyword in vm.keywords track by $index">
-                        </keyword-list-item>
-                    </div>
+            <div layout="row">
+                <div class="md-dialog-content" flex-xs flex-gt-xs="50">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Title</label>
+                        <input ng-model="vm.requirement.title" required>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Description</label>
+                        <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
+                                  md-select-on-focus></textarea>
+                    </md-input-container>
+                    <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"
+                               ng-click="vm.changeFunctional()">Functional
+                    </md-button>
+                    <md-button ng-class="vm.requirement.functional ? 'md-raised' : 'md-raised md-primary'"
+                               ng-click="vm.changeFunctional()">Non-Functional
+                    </md-button>
                 </div>
-                <div>
-                    <label>New Keywords</label>
-                    <div layout="row" layout-wrap>
-                        <md-input-container class="md-block" flex="50" ng-repeat="newKeyword in vm.newKeywords track by $index">
-                            <label>Keyword #{{ $index + vm.keywords.length + 1}}</label>
-                            <textarea ng-model="newKeyword.value" columns="1"
-                                      md-maxlength="50" rows="1" aria-multiline="true"
-                                      aria-required="true"
-                                      aria-invalid="true" ng-trim="false">
-                            </textarea>
-                        </md-input-container>
+                <span flex></span>
+                <div class="md-dialog-content" flex-xs flex-gt-xs="50">
+                    <div>
+                        <label>Stakeholders</label>
+                        <div layout="row" layout-wrap>
+                            <connection-list-item connection="connection" class="md-block" flex="100"
+                                                  ng-repeat="connection in vm.connections track by $index">
+                            </connection-list-item>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <div>
+                        <label>Keywords</label>
+                        <div layout="row" layout-wrap>
+                            <keyword-list-item keyword="keyword" class="md-block" flex="50"
+                                               ng-repeat="keyword in vm.keywords track by $index">
+                            </keyword-list-item>
+                        </div>
+                    </div>
+                    <div>
+                        <label>New Keywords</label>
+                        <div layout="row" layout-wrap>
+                            <md-input-container class="md-block" flex="50"
+                                                ng-repeat="newKeyword in vm.newKeywords track by $index">
+                                <label>Keyword #{{ $index + vm.keywords.length + 1}}</label>
+                                <textarea ng-model="newKeyword.value" columns="1"
+                                          md-maxlength="50" rows="1" aria-multiline="true"
+                                          aria-required="true"
+                                          aria-invalid="true" ng-trim="false">
+                        </textarea>
+                            </md-input-container>
+                        </div>
                     </div>
                 </div>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="vm.addNewKeyword()"> Add New Keyword</md-button>
-                <md-button ng-click="vm.cancel()"> Cancel</md-button>
-                <md-button ng-click="vm.save()" class="md-primary"> Save</md-button>
+            <md-button ng-click="vm.addNewConnection()"> Connect Stakeholder</md-button>
+            <md-button ng-click="vm.cancel()"> Cancel</md-button>
+            <md-button ng-click="vm.save()" class="md-primary"> Save</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>

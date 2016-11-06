@@ -49,7 +49,7 @@
           templateUrl: 'app/components/req/details/req.details.dialog.html',
           parent: angular.element(document.body),
           targetEvent: ev,
-          clickOutsideToClose:true
+          clickOutsideToClose:false
         })
       };
 

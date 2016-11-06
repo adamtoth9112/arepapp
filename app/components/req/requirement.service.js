@@ -35,7 +35,9 @@
 
         function Requirement() {
             this.title = '';
+            this.id = '';
             this.description = '';
+            this.functional = true;
         }
 
         function getRequirements() {
@@ -49,7 +51,9 @@
         function updateRequirement(projectId, requirement) {
             FirebaseDataService.requirements.child(projectId).child(requirement.$id).set({
                 title: requirement.title,
-                description: requirement.description
+                description: requirement.description,
+                functional: requirement.functional,
+                id: requirement.id
             });
             return;
         }

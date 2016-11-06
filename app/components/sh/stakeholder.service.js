@@ -8,6 +8,7 @@
     /** @ngInject */
     function StakeholderService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject) {
         var stakeholders = null;
+        var projectId = null;
 
         var service = {
             Stakeholder: Stakeholder,
@@ -26,7 +27,7 @@
         return service;
 
         function init(){
-            var projectId = ProjectService.getActualProject().$id;
+            projectId = ProjectService.getActualProject().$id;
             stakeholders = $firebaseArray(FirebaseDataService.stakeholders.child(projectId));
         }
 
@@ -39,7 +40,7 @@
             return stakeholders;
         }
 
-        function getStakeholderById(projectId, id){
+        function getStakeholderById(id){
             return $firebaseObject(FirebaseDataService.stakeholders.child(projectId).child(id));
         }
 

@@ -1,4 +1,11 @@
-<div>
-<strong><label>{{vm.keyword.value}}</label></strong>
-<md-button ng-click="vm.removeKeyword()" class="md-warn"><md-icon md-font-library="material-icons">delete</md-icon></md-button>
+<div flex>
+    <div flex layout-align="end center" layout="row">
+        <div flex layout-align="start center" layout="row">
+            <strong><label>{{vm.keyword.value}}</label></strong>
+            <span flex></span>
+        </div>
+        <md-button ng-click="vm.removeKeyword()" class="md-warn">
+            <md-icon md-font-library="material-icons">delete</md-icon>
+        </md-button>
+    </div>
 </div>
