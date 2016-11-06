@@ -6,8 +6,9 @@
         .factory('RequirementService', RequirementService);
 
     /** @ngInject */
-    function RequirementService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject) {
+    function RequirementService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject, NotificationService) {
         var requirements = null;
+        var selectedRequirement = null;
 
         var service = {
             Requirement: Requirement,
@@ -16,7 +17,9 @@
             getRequirementById: getRequirementById,
             addRequirement: addRequirement,
             removeRequirement: removeRequirement,
-            updateRequirement: updateRequirement
+            updateRequirement: updateRequirement,
+            getSelectedRequirement: getSelectedRequirement,
+            setSelectedRequirement: setSelectedRequirement
         };
 
         if (ProjectService.getActualProject() != null) {
@@ -32,7 +35,10 @@
 
         function Requirement() {
             this.title = '';
+            this.id = '';
             this.description = '';
+            this.functional = true;
+            this.subtype = '0'
         }
 
         function getRequirements() {
@@ -46,17 +52,44 @@
         function updateRequirement(projectId, requirement) {
             FirebaseDataService.requirements.child(projectId).child(requirement.$id).set({
                 title: requirement.title,
-                description: requirement.description
+                description: requirement.description,
+                functional: requirement.functional,
+                id: requirement.id,
+                subtype: requirement.subtype
             });
             return;
         }
 
         function addRequirement(projectId, requirement){
-            return FirebaseDataService.requirements.child(projectId).push(requirement);
+            var used = false;
+            return requirements.$loaded()
+                .then(function(){
+                    angular.forEach(requirements, function(req) {
+                            if (!used) {
+                                if (req.id === requirement.id)
+                                    used = true;
+                            }
+                    });
+
+                    if (used) {
+                        requirement.id = '';
+                        NotificationService.showNotification("Identifier is already in use!");
+                        return;
+                    }
+                    return FirebaseDataService.requirements.child(projectId).push(requirement);
+                });
         }
 
         function removeRequirement(requirement){
             return requirements.$remove(requirement);
+        }
+
+        function setSelectedRequirement(requirement) {
+            this.selectedRequirement = requirement;
+        }
+
+        function getSelectedRequirement() {
+            return this.selectedRequirement;
         }
     }
 

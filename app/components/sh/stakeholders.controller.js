@@ -10,11 +10,12 @@
         var vm = this;
 
         vm.project = ProjectService.getActualProject();
-        vm.stakeholders = StakeholderService.getStakeholders();
 
         if (vm.project == null) {
             $state.go('home');
         }
+
+        vm.stakeholders = StakeholderService.getStakeholders();
 
         vm.openNewStakeholderDialog = function (ev) {
             $mdDialog.show({

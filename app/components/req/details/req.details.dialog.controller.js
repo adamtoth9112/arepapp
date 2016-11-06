@@ -1,32 +1,60 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('arepApp')
-    .controller('RequirementDetailsDialogController', RequirementDetailsDialogController);
+    angular
+        .module('arepApp')
+        .controller('RequirementDetailsDialogController', RequirementDetailsDialogController);
 
     /** @ngInject */
-    function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService, NotificationService) {
-      var vm = this;
-      vm.keywords = [];
+    function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService, NotificationService, ConnectionService) {
+        var vm = this;
+        vm.keywords = KeywordService.getKeywordsToRequirement(vm.requirement);
+        vm.connections = ConnectionService.getConnections(vm.requirement);
+        vm.newKeywords = [];
 
-      vm.hide = function () {
-        $mdDialog.hide();
-      };
-      vm.cancel = function () {
-        $mdDialog.cancel();
-      };
+        vm.hide = function () {
+            $mdDialog.hide();
+            RequirementService.setSelectedRequirement(null);
+        };
+        vm.cancel = function () {
+            $mdDialog.cancel();
+            RequirementService.setSelectedRequirement(null);
+        };
 
-      vm.save = function () {
-       var projectId = ProjectService.getActualProject().$id;
-       RequirementService.updateRequirement(projectId, vm.requirement);
-        KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.keywords);
-        NotificationService.showNotification("Requirement saved successfully.");
-        vm.hide();
-      };
+        vm.save = function () {
+            var projectId = ProjectService.getActualProject().$id;
+            RequirementService.updateRequirement(projectId, vm.requirement);
+            KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.keywords, vm.newKeywords);
+            ConnectionService.updateConnections(vm.requirement.$id, vm.connections);
+            NotificationService.showNotification("Requirement saved successfully.");
+            vm.hide();
+        };
 
-      vm.addNewKeyword = function () {
-        vm.keywords.push(new KeywordService.Keyword());
-      };
+        vm.addNewKeyword = function () {
+            vm.newKeywords.push(new KeywordService.Keyword());
+        };
+
+        vm.addNewConnection = function (ev) {
+            vm.openNewConnectionDialog(ev);
+        };
+
+        vm.changeFunctional = function () {
+            vm.requirement.functional = !vm.requirement.functional;
+        };
+
+        vm.openNewConnectionDialog = function (ev) {
+            $mdDialog.show({
+                controller: "NewStakeholderListDialogController",
+                controllerAs: "vm",
+                templateUrl: 'app/components/connection/shlist/shlist.dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:false
+            });
+        };
+
+        vm.changeSubtype = function (id) {
+            vm.requirement.subtype = id;
+        }
     }
 })();

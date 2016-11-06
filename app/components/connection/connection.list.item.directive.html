@@ -1,0 +1,14 @@
+<div flex>
+    <div flex layout-align="end center" layout="row">
+        <div flex layout-align="start center" layout="row">
+            <strong><label>{{vm.stakeholder.title}}</label></strong>
+            <span flex></span>
+        </div>
+        <md-button ng-model="vm.connection.viewpoint" ng-class="md-raised" ng-click="vm.changeViewpoint()">
+            {{vm.viewpoints[vm.connection.viewpoint]}} Viewpoint
+        </md-button>
+        <md-button ng-click="vm.removeConnection()" class="md-warn">
+            <md-icon md-font-library="material-icons">delete</md-icon>
+        </md-button>
+    </div>
+</div>

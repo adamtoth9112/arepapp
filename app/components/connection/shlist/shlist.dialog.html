@@ -1,0 +1,19 @@
+<md-dialog aria-label="Select a stakeholder" ng-cloak style="min-width: 50%;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Select a stakeholder</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.cancel()">
+                <md-icon md-font-library="material-icons" aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content flex layout-xs="column" layout-gt-xs="row" layout-wrap>
+        <shlist-list-item stakeholder="stakeholder" flex-xs flex-gt-xs="50"
+                               ng-repeat="stakeholder in vm.stakeholders"></shlist-list-item>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="vm.openNewStakeholderDialog()"> Add new Stakeholder</md-button>
+        <md-button ng-click="vm.cancel()"> Cancel</md-button>
+    </md-dialog-actions>
+</md-dialog>

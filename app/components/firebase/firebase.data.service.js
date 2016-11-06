@@ -15,6 +15,7 @@
       requirements: root.child("requirements"),
       keywords: root.child("keywords"),
       stakeholders: root.child("stakeholders"),
+      connections: root.child("connections"),
       reset: reset
     };
 

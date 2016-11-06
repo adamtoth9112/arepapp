@@ -40,6 +40,7 @@
       };
 
       vm.showDetails = function (ev) {
+        RequirementService.setSelectedRequirement(vm.requirement);
         $mdDialog.show({
           controller: "RequirementDetailsDialogController",
           locals: {requirement: angular.copy(vm.requirement)},
@@ -48,7 +49,7 @@
           templateUrl: 'app/components/req/details/req.details.dialog.html',
           parent: angular.element(document.body),
           targetEvent: ev,
-          clickOutsideToClose:true
+          clickOutsideToClose:false
         })
       };
 

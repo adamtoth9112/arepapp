@@ -10,8 +10,6 @@
     var vm = this;
     vm.project = new ProjectService.Project();
 
-    activate();
-
     vm.hide = function() {
       $mdDialog.hide();
     };
@@ -27,11 +25,6 @@
             vm.hide();
           }
       );
-    }
-    ;
-
-    function activate(){
-
-    }
+    };
   }
 })();
