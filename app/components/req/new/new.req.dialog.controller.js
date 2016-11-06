@@ -11,6 +11,7 @@
         vm.requirement = new RequirementService.Requirement();
         vm.project = ProjectService.getActualProject();
         vm.keywords = [];
+        vm.connections = [];
 
         vm.hide = function () {
             $mdDialog.hide();
@@ -38,6 +39,6 @@
 
         vm.changeFunctional = function () {
             vm.requirement.functional = !vm.requirement.functional;
-        }
+        };
     }
 })();

@@ -33,12 +33,18 @@
                     </md-button>
                 </div>
                 <div class="md-dialog-content" flex-xs flex-gt-xs="50">
+                    <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"
+                               ng-click="vm.changeFunctional()">Functional
+                    </md-button>
+                    <md-button ng-class="vm.requirement.functional ? 'md-raised' : 'md-raised md-primary'"
+                               ng-click="vm.changeFunctional()">Non-Functional
+                    </md-button>
                     <div>
                         <label>Keywords</label>
                         <div layout="row" layout-wrap>
-                            <md-input-container class="md-block" flex="50"
-                                                ng-repeat="keyword in vm.keywords track by $index">
-                                <label>Keyword #{{ $index }}</label>
+                            <md-input-container class="md-block" flex="100"
+                                                ng-repeat="keyword in vm.keywords">
+                                <label>Keyword</label>
                                 <textarea ng-model="keyword.value" columns="1"
                                           md-maxlength="50" rows="1" aria-multiline="true"
                                           aria-required="true"
