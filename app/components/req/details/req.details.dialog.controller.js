@@ -52,5 +52,9 @@
                 clickOutsideToClose:false
             });
         };
+
+        vm.changeSubtype = function (id) {
+            vm.requirement.subtype = id;
+        }
     }
 })();

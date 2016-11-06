@@ -38,6 +38,7 @@
             this.id = '';
             this.description = '';
             this.functional = true;
+            this.subtype = '0'
         }
 
         function getRequirements() {
@@ -53,7 +54,8 @@
                 title: requirement.title,
                 description: requirement.description,
                 functional: requirement.functional,
-                id: requirement.id
+                id: requirement.id,
+                subtype: requirement.subtype
             });
             return;
         }

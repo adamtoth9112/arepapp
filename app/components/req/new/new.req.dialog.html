@@ -1,4 +1,4 @@
-<md-dialog aria-label="Add new requirement" ng-cloak style="min-width: 66%;">
+<md-dialog aria-label="Add new requirement" ng-cloak style="min-width: 75%;">
     <form name="NewRequirementForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -25,21 +25,30 @@
                         <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
                                   md-select-on-focus></textarea>
                     </md-input-container>
-                    <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"
-                               ng-click="vm.changeFunctional()">Functional
-                    </md-button>
-                    <md-button ng-class="vm.requirement.functional ? 'md-raised' : 'md-raised md-primary'"
-                               ng-click="vm.changeFunctional()">Non-Functional
-                    </md-button>
                 </div>
                 <div class="md-dialog-content" flex-xs flex-gt-xs="50">
-                    <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"
-                               ng-click="vm.changeFunctional()">Functional
-                    </md-button>
-                    <md-button ng-class="vm.requirement.functional ? 'md-raised' : 'md-raised md-primary'"
-                               ng-click="vm.changeFunctional()">Non-Functional
-                    </md-button>
-                    <div>
+                    <div flex>
+                        <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeFunctional()">Functional
+                        </md-button>
+                        <md-button ng-class="vm.requirement.functional ? 'md-raised' : 'md-raised md-primary'"
+                                   ng-click="vm.changeFunctional()">Non-Functional
+                        </md-button>
+                    </div>
+                    <md-divider></md-divider>
+                    <div flex>
+                        <md-button ng-class="vm.requirement.subtype == 0 ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeSubtype(0)">Primary
+                        </md-button>
+                        <md-button ng-class="vm.requirement.subtype == 1 ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeSubtype(1)">Derived
+                        </md-button>
+                        <md-button ng-class="vm.requirement.subtype == 2 ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeSubtype(2)">Candidate
+                        </md-button>
+                    </div>
+                    <md-divider></md-divider>
+                    <div flex>
                         <label>Keywords</label>
                         <div layout="row" layout-wrap>
                             <md-input-container class="md-block" flex="100"

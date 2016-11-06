@@ -21,12 +21,26 @@
                         <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
                                   md-select-on-focus></textarea>
                     </md-input-container>
-                    <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"
-                               ng-click="vm.changeFunctional()">Functional
-                    </md-button>
-                    <md-button ng-class="vm.requirement.functional ? 'md-raised' : 'md-raised md-primary'"
-                               ng-click="vm.changeFunctional()">Non-Functional
-                    </md-button>
+                    <div flex>
+                        <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeFunctional()">Functional
+                        </md-button>
+                        <md-button ng-class="vm.requirement.functional ? 'md-raised' : 'md-raised md-primary'"
+                                   ng-click="vm.changeFunctional()">Non-Functional
+                        </md-button>
+                        <md-divider></md-divider>
+                    </div>
+                    <div flex>
+                        <md-button ng-class="vm.requirement.subtype == 0 ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeSubtype(0)">Primary
+                        </md-button>
+                        <md-button ng-class="vm.requirement.subtype == 1 ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeSubtype(1)">Derived
+                        </md-button>
+                        <md-button ng-class="vm.requirement.subtype == 2 ? 'md-raised md-primary' : 'md-raised'"
+                                   ng-click="vm.changeSubtype(2)">Candidate
+                        </md-button>
+                    </div>
                 </div>
                 <div class="md-dialog-content" flex-xs flex-gt-xs="50">
                     <div>
