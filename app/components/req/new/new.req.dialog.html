@@ -23,7 +23,12 @@
                     <md-input-container class="md-block">
                         <label>Description</label>
                         <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
-                                  md-select-on-focus></textarea>
+                                  md-select-on-focus>
+                        </textarea>
+                    </md-input-container>
+                    <md-input-container flex-xs flex-gt-xs="20">
+                        <label>Priority</label>
+                        <input ng-model="vm.requirement.priority" required type="number" min="0">
                     </md-input-container>
                 </div>
                 <div class="md-dialog-content" flex-xs flex-gt-xs="50">

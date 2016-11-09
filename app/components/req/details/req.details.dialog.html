@@ -1,9 +1,12 @@
 <md-dialog aria-label="Requirement Details" ng-cloak style="min-width: 75%;">
     <form name="NewRequirementForm">
         <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Requirement - #{{vm.requirement.id}}</h2>
-                <span flex></span>
+            <div class="md-toolbar-tools" flex layout-align="end center" layout="row">
+                <div flex layout-align="start center" layout="row">
+                    <h2>Requirement Details</h2>
+                    <span flex></span>
+                </div>
+                # {{vm.requirement.id}}
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon md-font-library="material-icons" aria-label="Close dialog">close</md-icon>
                 </md-button>
@@ -20,6 +23,10 @@
                         <label>Description</label>
                         <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
                                   md-select-on-focus></textarea>
+                    </md-input-container>
+                    <md-input-container flex-xs flex-gt-xs="20">
+                        <label>Priority</label>
+                        <input ng-model="vm.requirement.priority" required type="number" min="0">
                     </md-input-container>
                     <div flex>
                         <md-button ng-class="vm.requirement.functional ? 'md-raised md-primary' : 'md-raised'"

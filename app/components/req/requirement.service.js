@@ -39,6 +39,7 @@
             this.description = '';
             this.functional = true;
             this.subtype = '0'
+            this.priority = 0;
         }
 
         function getRequirements() {
@@ -55,9 +56,9 @@
                 description: requirement.description,
                 functional: requirement.functional,
                 id: requirement.id,
-                subtype: requirement.subtype
+                subtype: requirement.subtype,
+                priority: requirement.priority
             });
-            return;
         }
 
         function addRequirement(projectId, requirement){
