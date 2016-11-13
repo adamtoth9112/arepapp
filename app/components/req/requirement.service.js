@@ -38,7 +38,7 @@
             this.id = '';
             this.description = '';
             this.functional = true;
-            this.subtype = '0'
+            this.subtype = '0';
             this.priority = 0;
         }
 

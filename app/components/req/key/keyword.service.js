@@ -28,11 +28,10 @@
       keywords = $firebaseArray(FirebaseDataService.keywords);
     }
 
-    function addKeywordsToRequirement(requirementId, keywords, newKeywords){
-      _.forEach(newKeywords, function (keyword) {
-        keywords.push(keyword);
-        FirebaseDataService.keywords.child(requirementId).push(keyword);
-      })
+    function addKeywordsToRequirement(requirementId, newKeywords){
+      angular.forEach(newKeywords, function (keyword) {
+          FirebaseDataService.keywords.child(requirementId).push(keyword);
+      });
     }
 
     function removeKeyword(requirementId, keyword) {

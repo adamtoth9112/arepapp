@@ -63,7 +63,7 @@
                         <label>Keywords</label>
                         <div layout="row" layout-wrap>
                             <keyword-list-item keyword="keyword" class="md-block" flex="50"
-                                               ng-repeat="keyword in vm.keywords">
+                                               ng-repeat="keyword in vm.keywords track by $index">
                             </keyword-list-item>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         <label>New Keywords</label>
                         <div layout="row" layout-wrap>
                             <md-input-container class="md-block" flex="50"
-                                                ng-repeat="newKeyword in vm.newKeywords">
+                                                ng-repeat="newKeyword in vm.newKeywords track by $index">
                                 <label>Keyword</label>
                                 <textarea ng-model="newKeyword.value" columns="1"
                                           md-maxlength="50" rows="1" aria-multiline="true"

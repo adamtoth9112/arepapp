@@ -57,7 +57,7 @@
                         <label>Keywords</label>
                         <div layout="row" layout-wrap>
                             <md-input-container class="md-block" flex="100"
-                                                ng-repeat="keyword in vm.keywords">
+                                                ng-repeat="keyword in vm.keywords track by $index">
                                 <label>Keyword</label>
                                 <textarea ng-model="keyword.value" columns="1"
                                           md-maxlength="50" rows="1" aria-multiline="true"

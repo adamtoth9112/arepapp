@@ -24,7 +24,7 @@
         vm.save = function () {
             var projectId = ProjectService.getActualProject().$id;
             RequirementService.updateRequirement(projectId, vm.requirement);
-            KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.keywords, vm.newKeywords);
+            KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.newKeywords);
             ConnectionService.updateConnections(vm.requirement.$id, vm.connections);
             NotificationService.showNotification("Requirement saved successfully.");
             vm.hide();
