@@ -21,11 +21,8 @@
     return directive;
 
     /** @ngInject */
-    function RequirementListItemController($mdDialog, KeywordService, RequirementService) {
+    function RequirementListItemController($mdDialog, RequirementService) {
       var vm = this;
-      vm.keywords = null;
-
-      activate();
 
       vm.showConfirm = function(ev) {
         var confirm = $mdDialog.confirm()
@@ -52,10 +49,6 @@
           clickOutsideToClose:false
         })
       };
-
-      function activate(){
-        vm.keywords = KeywordService.getKeywordsToRequirement(vm.requirement);
-      }
     }
   }
 

@@ -11,7 +11,7 @@
             restrict: 'E',
             templateUrl: 'app/components/req/key/keyword.list.item.directive.html',
             scope: {
-                keyword: '='
+                relation: '='
             },
             controller: KeywordItemController,
             controllerAs: 'vm',
@@ -21,12 +21,13 @@
         return directive;
 
         /** @ngInject */
-        function KeywordItemController(KeywordService, RequirementService) {
+        function KeywordItemController(KeywordService, RequirementService, RelationService) {
             var vm = this;
+            vm.keyword = KeywordService.getKeywordById(vm.relation.key);
 
             vm.removeKeyword = function(ev) {
                var req = RequirementService.getSelectedRequirement();
-               KeywordService.removeKeyword(req.$id, vm.keyword);
+               RelationService.removeRelation(req.$id, vm.relation);
             };
         }
     }

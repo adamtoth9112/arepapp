@@ -6,11 +6,12 @@
         .controller('RequirementDetailsDialogController', RequirementDetailsDialogController);
 
     /** @ngInject */
-    function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService, NotificationService, ConnectionService) {
+    function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService,
+                                                NotificationService, ConnectionService, RelationService) {
         var vm = this;
-        vm.keywords = KeywordService.getKeywordsToRequirement(vm.requirement);
         vm.connections = ConnectionService.getConnections(vm.requirement);
         vm.newKeywords = [];
+        vm.relations = RelationService.getRelations(vm.requirement);
 
         vm.hide = function () {
             $mdDialog.hide();
@@ -24,7 +25,7 @@
         vm.save = function () {
             var projectId = ProjectService.getActualProject().$id;
             RequirementService.updateRequirement(projectId, vm.requirement);
-            KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.newKeywords);
+            KeywordService.addKeywords(vm.requirement.$id, vm.newKeywords);
             ConnectionService.updateConnections(vm.requirement.$id, vm.connections);
             NotificationService.showNotification("Requirement saved successfully.");
             vm.hide();
