@@ -24,7 +24,7 @@
             RequirementService.addRequirement(vm.project.$id, vm.requirement).then(
                 function (requirement) {
                     var requirementId = requirement.key();
-                    KeywordService.addKeywordsToRequirement(requirementId, vm.keywords);
+                    KeywordService.addKeywords(requirementId, vm.keywords);
                     NotificationService.showNotification("Requirement created successfully.");
                     vm.hide();
                 }
