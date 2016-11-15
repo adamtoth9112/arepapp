@@ -13,7 +13,8 @@
             updateConflicts: updateConflicts,
             addConflict: addConflict,
             getConflicts: getConflicts,
-            removeConflict: removeConflict
+            removeConflict: removeConflict,
+            getConflictsToRequirement: getConflictsToRequirement
         };
 
         return service;
@@ -23,7 +24,7 @@
         }
 
         function updateConflicts(keywordId, conflicts) {
-            _.forEach(conflicts, function (conflict) {
+            angular.forEach(conflicts, function (conflict) {
                 FirebaseDataService.conflicts.child(keywordId).child(conflict.$id).set({
                     requirementId: conflicts.requirementId
                 });
@@ -38,8 +39,23 @@
             FirebaseDataService.conflicts.child(keywordId).child(conflict.$id).remove();
         }
 
-        function getConflicts(conflict) {
-            return $firebaseArray(FirebaseDataService.conflicts.child(conflict.$id));
+        function getConflicts(keywordId) {
+            return $firebaseArray(FirebaseDataService.conflicts.child(keywordId));
+        }
+
+        function getConflictsToRequirement(relation) {
+            var conflicts = getConflicts(relation.keywordId);
+            /*angular.forEach(relations, function (relation) {
+                cpart = getConflicts(relation.keywordId);
+
+                angular.forEach(cpart, function (cp) {
+                    if (conflicts.indexOf(cp) === -1) {
+                        conflicts.push(cp);
+                    }
+                });
+
+            });*/
+            return conflicts;
         }
     }
 })();

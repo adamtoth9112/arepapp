@@ -57,9 +57,11 @@
         function addRelation(requirementId, keywordId) {
             var relation = new RelationService.Relation();
             relation.keywordId = keywordId;
-            RelationService.addRelation(requirementId, relation);
-
-            addConflict(keywordId, requirementId);
+            RelationService.addRelation(requirementId, relation).then(
+                function (relation) {
+                    addConflict(keywordId, requirementId);
+                }
+            );
         }
 
         function addConflict(keywordId, requirementId) {

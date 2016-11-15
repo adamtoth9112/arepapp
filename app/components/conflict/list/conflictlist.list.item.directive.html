@@ -1,0 +1,23 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <div flex layout-align="end center" layout="row">
+        <div flex layout-align="start center" layout="row">
+          <h3>
+            {{vm.requirement.title}}
+          </h3>
+          <span flex></span>
+        </div>
+        #{{vm.requirement.id}}
+      </div>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    {{vm.requirement.description}}
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button class="md-action" ng-click="vm.showDetails()">
+      Details
+    </md-button>
+  </md-card-actions>
+</md-card>

@@ -7,7 +7,9 @@
 
     /** @ngInject */
     function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService,
-                                                NotificationService, ConnectionService, RelationService) {
+                                                NotificationService, ConnectionService, RelationService, ConflictService,
+                                                $firebaseArray
+    ) {
         var vm = this;
         vm.connections = ConnectionService.getConnections(vm.requirement);
         vm.newKeywords = [];
@@ -50,7 +52,21 @@
                 templateUrl: 'app/components/connection/shlist/shlist.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:false
+                clickOutsideToClose: false
+            });
+        };
+
+        vm.showConflicts = function (ev) {
+
+            $mdDialog.show({
+                controller: "ConflictListDialogController",
+                locals: {relations: vm.relations},
+                controllerAs: "vm",
+                bindToController: true,
+                templateUrl: 'app/components/conflict/conflictlist.dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false
             });
         };
 
