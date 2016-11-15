@@ -23,7 +23,7 @@
         /** @ngInject */
         function KeywordItemController(KeywordService, RequirementService, RelationService) {
             var vm = this;
-            vm.keyword = KeywordService.getKeywordById(vm.relation.key);
+            vm.keyword = KeywordService.getKeywordById(vm.relation.keywordId);
 
             vm.removeKeyword = function(ev) {
                var req = RequirementService.getSelectedRequirement();

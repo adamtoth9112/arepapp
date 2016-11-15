@@ -19,13 +19,13 @@
         return service;
 
         function Relation() {
-            this.key = '';
+            this.keywordId = '';
         }
 
         function updateRelations(requirementId, relations) {
             _.forEach(relations, function (relation) {
                 FirebaseDataService.relations.child(requirementId).child(relation.$id).set({
-                    key: relation.key
+                    keywordId: relation.keywordId
                 });
             })
         }

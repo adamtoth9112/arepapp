@@ -6,7 +6,7 @@
         .factory('KeywordService', KeywordService);
 
     /** @ngInject */
-    function KeywordService($firebaseArray, $firebaseObject, FirebaseDataService, RelationService, ProjectService) {
+    function KeywordService($firebaseArray, $firebaseObject, FirebaseDataService, RelationService, ProjectService, ConflictService) {
         var keywords = null;
         var projectId;
 
@@ -44,7 +44,7 @@
                 if (keywordId == null) {
                     keywords.$add(keyword).then(
                         function (keyword) {
-                            addRelation(requirementId, keyword.key())
+                            addRelation(requirementId, keyword.key());
                         }
                     );
                 }
@@ -56,8 +56,16 @@
 
         function addRelation(requirementId, keywordId) {
             var relation = new RelationService.Relation();
-            relation.key = keywordId;
+            relation.keywordId = keywordId;
             RelationService.addRelation(requirementId, relation);
+
+            addConflict(keywordId, requirementId);
+        }
+
+        function addConflict(keywordId, requirementId) {
+            var conflict = new ConflictService.Conflict();
+            conflict.requirementId = requirementId;
+            ConflictService.addConflict(keywordId, conflict);
         }
 
         function removeKeyword(keyword) {

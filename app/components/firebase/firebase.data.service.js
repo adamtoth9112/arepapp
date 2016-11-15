@@ -17,6 +17,7 @@
       stakeholders: root.child("stakeholders"),
       connections: root.child("connections"),
       relations: root.child("relations"),
+      conflicts: root.child("conflicts"),
       reset: reset
     };
 
