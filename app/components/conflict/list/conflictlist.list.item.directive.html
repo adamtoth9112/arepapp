@@ -1,4 +1,4 @@
-<md-card>
+<md-card ng-class="vm.requirement.priority > vm.selectedRequirement.priority ? 'conflictl' : 'conflicth'">
   <md-card-title>
     <md-card-title-text>
       <div flex layout-align="end center" layout="row">
@@ -15,9 +15,4 @@
   <md-card-content>
     {{vm.requirement.description}}
   </md-card-content>
-  <md-card-actions layout="row" layout-align="end center">
-    <md-button class="md-action" ng-click="vm.showDetails()">
-      Details
-    </md-button>
-  </md-card-actions>
 </md-card>

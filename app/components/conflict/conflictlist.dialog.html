@@ -10,7 +10,7 @@
     </md-toolbar>
     <md-dialog-content flex layout-xs="column" layout-gt-xs="row" layout-wrap>
         <conflictlist-list-item conflict="conflict" flex-xs flex-gt-xs="50"
-                               ng-repeat="conflict in vm.conflicts"></conflictlist-list-item>
+                               ng-repeat="conflict in vm.conflicts | orderBy : 'priority'"></conflictlist-list-item>
     </md-dialog-content>
     <md-dialog-actions layout="row">
         <md-button ng-click="vm.cancel()"> Cancel</md-button>

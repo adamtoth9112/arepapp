@@ -25,6 +25,7 @@
             var vm = this;
 
             vm.requirement = RequirementService.getRequirementById(ProjectService.getActualProject().$id, vm.conflict.requirementId);
+            vm.selectedRequirement = RequirementService.getSelectedRequirement();
 
             vm.hide = function (ev) {
                 $mdDialog.hide();
