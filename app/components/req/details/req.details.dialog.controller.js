@@ -7,8 +7,7 @@
 
     /** @ngInject */
     function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService,
-                                                NotificationService, ConnectionService, RelationService, ConflictService,
-                                                $firebaseArray
+                                                NotificationService, ConnectionService, RelationService
     ) {
         var vm = this;
         vm.connections = ConnectionService.getConnections(vm.requirement);
@@ -67,6 +66,17 @@
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: false
+            });
+        };
+
+        vm.refine = function (ev) {
+            $mdDialog.show({
+                controller: "NewRequirementDialogController",
+                controllerAs: "vm",
+                templateUrl: 'app/components/req/new/new.req.dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:false
             });
         };
 

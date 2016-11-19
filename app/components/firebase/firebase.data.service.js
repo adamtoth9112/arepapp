@@ -18,6 +18,7 @@
       connections: root.child("connections"),
       relations: root.child("relations"),
       conflicts: root.child("conflicts"),
+      refinements: root.child("refinements"),
       reset: reset
     };
 

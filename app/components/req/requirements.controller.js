@@ -26,5 +26,9 @@
                 clickOutsideToClose:true
             });
         };
+
+        vm.filterSystemRequirements = function (req) {
+            return req.parentId == '';
+        };
     }
 })();

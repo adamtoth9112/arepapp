@@ -13,7 +13,17 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-content>
-        {{vm.requirement.description}}
+        <div flex>
+            {{vm.requirement.description}}
+        </div>
+        <ng-show ng-show="vm.refinements != null && vm.refinements.length > 0">
+            <div flex>
+                System requirements
+                <md-divider></md-divider>
+                <refinement-list-item refinement="refinement" flex-xs flex-gt-xs="33"
+                                      ng-repeat="refinement in vm.refinements"></refinement-list-item>
+            </div>
+        </ng-show>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
         <md-button class="md-action" ng-click="vm.showDetails()">

@@ -6,9 +6,11 @@
         .factory('RequirementService', RequirementService);
 
     /** @ngInject */
-    function RequirementService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject, NotificationService) {
+    function RequirementService($firebaseArray, FirebaseDataService, ProjectService, $firebaseObject,
+                                NotificationService, RefinementService) {
         var requirements = null;
         var selectedRequirement = null;
+        var projectId;
 
         var service = {
             Requirement: Requirement,
@@ -29,7 +31,7 @@
         return service;
 
         function init(){
-            var projectId = ProjectService.getActualProject().$id;
+            projectId = ProjectService.getActualProject().$id;
             requirements = $firebaseArray(FirebaseDataService.requirements.child(projectId));
         }
 
@@ -40,6 +42,7 @@
             this.functional = true;
             this.subtype = '0';
             this.priority = 0;
+            this.parentId = '';
         }
 
         function getRequirements() {
@@ -57,7 +60,8 @@
                 functional: requirement.functional,
                 id: requirement.id,
                 subtype: requirement.subtype,
-                priority: requirement.priority
+                priority: requirement.priority,
+                parentId: requirement.parentId
             });
         }
 
@@ -82,6 +86,16 @@
         }
 
         function removeRequirement(requirement){
+            RefinementService.getRefinements(requirement).$loaded().then(
+                function (refinements) {
+                    angular.forEach(refinements, function (ref) {
+                        getRequirementById(projectId, ref.requirementKey).$loaded().then(
+                            function (req) {
+                                removeRequirement(req);
+                            });
+                    });
+                }
+            );
             return requirements.$remove(requirement);
         }
 
