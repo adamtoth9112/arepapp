@@ -20,6 +20,10 @@
                     <textarea ng-model="vm.stakeholder.description" md-maxlength="150" rows="5"
                               md-select-on-focus></textarea>
                 </md-input-container>
+                <md-input-container flex-xs flex-gt-xs="20">
+                    <label>Priority</label>
+                    <input ng-model="vm.stakeholder.priority" required type="number" min="0">
+                </md-input-container>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">

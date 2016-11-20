@@ -21,11 +21,10 @@
     return directive;
 
     /** @ngInject */
-    function RequirementListItemController($mdDialog, KeywordService, RequirementService) {
+    function RequirementListItemController($mdDialog, RequirementService, RefinementService) {
       var vm = this;
-      vm.keywords = null;
 
-      activate();
+      vm.refinements = RefinementService.getRefinements(vm.requirement);
 
       vm.showConfirm = function(ev) {
         var confirm = $mdDialog.confirm()
@@ -35,6 +34,7 @@
           .ok('Yes, delete it')
           .cancel('Cancel');
         $mdDialog.show(confirm).then(function() {
+          RefinementService.removeRefinements(vm.requirement.$id);
           RequirementService.removeRequirement(vm.requirement);
         });
       };
@@ -52,10 +52,6 @@
           clickOutsideToClose:false
         })
       };
-
-      function activate(){
-        vm.keywords = KeywordService.getKeywordsToRequirement(vm.requirement);
-      }
     }
   }
 

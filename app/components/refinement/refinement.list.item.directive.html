@@ -1,0 +1,12 @@
+<div flex>
+    <div flex layout-align="end center" layout="row">
+        <md-button flex layout-align="start center" layout="row" ng-click="vm.showDetails()">
+            <strong>{{vm.requirement.title}}</strong>
+            <span flex></span>
+        </md-button>
+        <label>#{{vm.requirement.id}}</label>
+        <md-button ng-click="vm.removeRequirement()" class="md-warn">
+            <md-icon md-font-library="material-icons">delete</md-icon>
+        </md-button>
+    </div>
+</div>

@@ -34,6 +34,7 @@
         function Stakeholder() {
             this.title = '';
             this.description = '';
+            this.priority = 0;
         }
 
         function getStakeholders() {
@@ -47,9 +48,9 @@
         function updateStakeholder(projectId, stakeholder) {
             FirebaseDataService.stakeholders.child(projectId).child(stakeholder.$id).set({
                 title: stakeholder.title,
-                description: stakeholder.description
+                description: stakeholder.description,
+                priority: stakeholder.priority
             });
-            return;
         }
 
         function addStakeholder(projectId, stakeholder){

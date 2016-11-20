@@ -17,13 +17,18 @@
                         <input ng-model="vm.requirement.title" required>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
-                        <label>ID: {{vm.project.id}}-</label>
+                        <label>ID: {{vm.parentId}}-</label>
                         <input ng-model="vm.requirement.id" required>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Description</label>
                         <textarea ng-model="vm.requirement.description" md-maxlength="150" rows="5"
-                                  md-select-on-focus></textarea>
+                                  md-select-on-focus>
+                        </textarea>
+                    </md-input-container>
+                    <md-input-container flex-xs flex-gt-xs="20">
+                        <label>Priority</label>
+                        <input ng-model="vm.requirement.priority" required type="number" min="0">
                     </md-input-container>
                 </div>
                 <div class="md-dialog-content" flex-xs flex-gt-xs="50">
@@ -52,7 +57,7 @@
                         <label>Keywords</label>
                         <div layout="row" layout-wrap>
                             <md-input-container class="md-block" flex="100"
-                                                ng-repeat="keyword in vm.keywords">
+                                                ng-repeat="keyword in vm.keywords track by $index">
                                 <label>Keyword</label>
                                 <textarea ng-model="keyword.value" columns="1"
                                           md-maxlength="50" rows="1" aria-multiline="true"

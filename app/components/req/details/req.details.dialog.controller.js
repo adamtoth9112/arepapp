@@ -6,11 +6,13 @@
         .controller('RequirementDetailsDialogController', RequirementDetailsDialogController);
 
     /** @ngInject */
-    function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService, NotificationService, ConnectionService) {
+    function RequirementDetailsDialogController($mdDialog, RequirementService, KeywordService, ProjectService,
+                                                NotificationService, ConnectionService, RelationService
+    ) {
         var vm = this;
-        vm.keywords = KeywordService.getKeywordsToRequirement(vm.requirement);
         vm.connections = ConnectionService.getConnections(vm.requirement);
         vm.newKeywords = [];
+        vm.relations = RelationService.getRelations(vm.requirement);
 
         vm.hide = function () {
             $mdDialog.hide();
@@ -24,7 +26,7 @@
         vm.save = function () {
             var projectId = ProjectService.getActualProject().$id;
             RequirementService.updateRequirement(projectId, vm.requirement);
-            KeywordService.addKeywordsToRequirement(vm.requirement.$id, vm.keywords, vm.newKeywords);
+            KeywordService.addKeywords(vm.requirement.$id, vm.requirement.parentId, vm.newKeywords);
             ConnectionService.updateConnections(vm.requirement.$id, vm.connections);
             NotificationService.showNotification("Requirement saved successfully.");
             vm.hide();
@@ -47,6 +49,31 @@
                 controller: "NewStakeholderListDialogController",
                 controllerAs: "vm",
                 templateUrl: 'app/components/connection/shlist/shlist.dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false
+            });
+        };
+
+        vm.showConflicts = function (ev) {
+
+            $mdDialog.show({
+                controller: "ConflictListDialogController",
+                locals: {relations: vm.relations},
+                controllerAs: "vm",
+                bindToController: true,
+                templateUrl: 'app/components/conflict/conflictlist.dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false
+            });
+        };
+
+        vm.refine = function (ev) {
+            $mdDialog.show({
+                controller: "NewRequirementDialogController",
+                controllerAs: "vm",
+                templateUrl: 'app/components/req/new/new.req.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:false

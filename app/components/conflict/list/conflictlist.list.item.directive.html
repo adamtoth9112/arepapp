@@ -1,0 +1,18 @@
+<md-card ng-class="vm.requirement.priority > vm.selectedRequirement.priority ? 'conflictl' : 'conflicth'">
+  <md-card-title>
+    <md-card-title-text>
+      <div flex layout-align="end center" layout="row">
+        <div flex layout-align="start center" layout="row">
+          <h3>
+            {{vm.requirement.title}}
+          </h3>
+          <span flex></span>
+        </div>
+        #{{vm.requirement.id}}
+      </div>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    {{vm.requirement.description}}
+  </md-card-content>
+</md-card>

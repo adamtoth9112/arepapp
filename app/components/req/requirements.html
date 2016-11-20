@@ -1,9 +1,15 @@
-<div layout="block" class="relative">
-    <h2>{{vm.project.title}}</h2>
+<div layout-margin>
+<div flex layout-align="end center" layout="row">
+    <div flex layout-align="start center" layout="row">
+        <h2>{{vm.project.title}} - Requirements</h2>
+        <span flex></span>
+    </div>
+    <h2># {{vm.project.id}}</h2>
+</div>
 </div>
 <md-content flex layout-xs="column" layout-gt-xs="row" layout-wrap>
     <requirement-list-item requirement="requirement" flex-xs flex-gt-xs="33"
-                           ng-repeat="requirement in vm.requirements"></requirement-list-item>
+                           ng-repeat="requirement in vm.requirements | filter : vm.filterSystemRequirements | orderBy : 'priority'"></requirement-list-item>
 </md-content>
 <div layout="column" class="relative">
     <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="vm.openNewRequirementDialog()">
