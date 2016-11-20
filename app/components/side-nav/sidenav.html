@@ -5,6 +5,7 @@
     <md-button ui-sref="home">Projects</md-button>
     <md-button ui-sref="requirements" ng-if="vm.visible()">Requirements</md-button>
     <md-button ui-sref="stakeholders" ng-if="vm.visible()">Stakeholders</md-button>
+    <md-button ng-click="vm.export()">Export database</md-button>
     <md-button ng-click="vm.showConfirm()" class="md-warn"><md-icon md-font-library="material-icons">delete</md-icon> Reset DB</md-button>
     <md-button ng-click="vm.close()">
       <md-icon md-font-library="material-icons">close</md-icon> Close menu
