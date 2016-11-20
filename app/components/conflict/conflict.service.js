@@ -21,12 +21,14 @@
 
         function Conflict() {
             this.requirementId = '';
+            this.parentId = false;
         }
 
         function updateConflicts(keywordId, conflicts) {
             angular.forEach(conflicts, function (conflict) {
                 FirebaseDataService.conflicts.child(keywordId).child(conflict.$id).set({
-                    requirementId: conflicts.requirementId
+                    requirementId: conflict.requirementId,
+                    parentId: conflicts.parentId
                 });
             })
         }
@@ -45,16 +47,6 @@
 
         function getConflictsToRequirement(relation) {
             var conflicts = getConflicts(relation.keywordId);
-            /*angular.forEach(relations, function (relation) {
-                cpart = getConflicts(relation.keywordId);
-
-                angular.forEach(cpart, function (cp) {
-                    if (conflicts.indexOf(cp) === -1) {
-                        conflicts.push(cp);
-                    }
-                });
-
-            });*/
             return conflicts;
         }
     }

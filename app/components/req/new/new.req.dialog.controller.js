@@ -30,7 +30,7 @@
             RequirementService.addRequirement(vm.project.$id, vm.requirement).then(
                 function (requirement) {
                     var requirementId = requirement.key();
-                    KeywordService.addKeywords(requirementId, vm.keywords);
+                    KeywordService.addKeywords(requirementId, vm.requirement.parentId, vm.keywords);
                     if (vm.parentRequirement != null) {
                         var ref = new RefinementService.Refinement();
                         ref.requirementKey = requirementId;

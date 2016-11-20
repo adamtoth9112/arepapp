@@ -30,7 +30,7 @@
             keywords = $firebaseArray(FirebaseDataService.keywords.child(projectId));
         }
 
-        function addKeywords(requirementId, newKeywords) {
+        function addKeywords(requirementId, parentId, newKeywords) {
             angular.forEach(newKeywords, function (keyword) {
 
                 var keywordId = null;
@@ -44,29 +44,30 @@
                 if (keywordId == null) {
                     keywords.$add(keyword).then(
                         function (keyword) {
-                            addRelation(requirementId, keyword.key());
+                            addRelation(requirementId, parentId, keyword.key());
                         }
                     );
                 }
                 else {
-                    addRelation(requirementId, keywordId);
+                    addRelation(requirementId, parentId, keywordId);
                 }
             });
         }
 
-        function addRelation(requirementId, keywordId) {
+        function addRelation(requirementId, parentId, keywordId) {
             var relation = new RelationService.Relation();
             relation.keywordId = keywordId;
             RelationService.addRelation(requirementId, relation).then(
                 function (relation) {
-                    addConflict(keywordId, requirementId);
+                    addConflict(keywordId, parentId, requirementId);
                 }
             );
         }
 
-        function addConflict(keywordId, requirementId) {
+        function addConflict(keywordId, parentId, requirementId) {
             var conflict = new ConflictService.Conflict();
             conflict.requirementId = requirementId;
+            conflict.parentId = parentId;
             ConflictService.addConflict(keywordId, conflict);
         }
 

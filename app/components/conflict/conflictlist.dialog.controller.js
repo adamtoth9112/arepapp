@@ -16,7 +16,10 @@
             ConflictService.getConflictsToRequirement(vm.relations[i]).$loaded().then(
                 function (confs) {
                     angular.forEach(confs, function (conf) {
-                        if (requirement.$id === conf.requirementId) {
+                        if (requirement.$id === conf.requirementId ||
+                            (requirement.parentId === '' && conf.parentId != '') ||
+                            (requirement.parentId === conf.requirementId)
+                            ) {
                         }
                         else {
                             var old = false;

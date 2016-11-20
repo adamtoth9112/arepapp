@@ -18,10 +18,11 @@
         </div>
         <ng-show ng-show="vm.refinements != null && vm.refinements.length > 0">
             <div flex>
-                System requirements
+                <Label>System requirements</Label>
                 <md-divider></md-divider>
                 <refinement-list-item refinement="refinement" flex-xs flex-gt-xs="33"
                                       ng-repeat="refinement in vm.refinements"></refinement-list-item>
+                <md-divider></md-divider>
             </div>
         </ng-show>
     </md-card-content>
